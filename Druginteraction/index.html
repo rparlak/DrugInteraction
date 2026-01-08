@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drug Interaction Check & Alert System</title>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <h1>Drug Interaction Check</h1>
+      <p class="subtitle">Enter up to five medications to check potential interactions.</p>
+    </div>
+
+    <div class="pill-badges" aria-label="Severity filter">
+      <span class="badge badge-all active" data-filter="ALL">All</span>
+      <span class="badge badge-minor" data-filter="Minor">Minor</span>
+      <span class="badge badge-moderate" data-filter="Moderate">Moderate</span>
+      <span class="badge badge-major" data-filter="Major">Major</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- INPUT -->
+    <section class="card">
+      <div class="card-head">
+        <h2>Medication Input</h2>
+        <p class="tip">
+          Example inputs: <b>Warfarin</b>, <b>Flagyl</b>, <b>Dolorex</b>, <b>Apranax</b>, <b>Losartan</b>, <b>Ibucold</b>, <b>Parol</b>
+        </p>
+      </div>
+
+      <form id="drugForm" class="grid" autocomplete="off">
+        <div class="field">
+          <label for="drug1">Drug 1</label>
+          <input id="drug1" class="drug-input" type="text" placeholder="e.g., warfarin" />
+        </div>
+
+        <div class="field">
+          <label for="drug2">Drug 2</label>
+          <input id="drug2" class="drug-input" type="text" placeholder="e.g., flagyl" />
+        </div>
+
+        <div class="field">
+          <label for="drug3">Drug 3 <span class="optional">(optional)</span></label>
+          <input id="drug3" class="drug-input" type="text" placeholder="optional" />
+        </div>
+
+        <div class="field">
+          <label for="drug4">Drug 4 <span class="optional">(optional)</span></label>
+          <input id="drug4" class="drug-input" type="text" placeholder="optional" />
+        </div>
+
+        <div class="field full">
+          <label for="drug5">Drug 5 <span class="optional">(optional)</span></label>
+          <input id="drug5" class="drug-input" type="text" placeholder="optional" />
+        </div>
+
+        <div class="actions full">
+          <button id="checkBtn" type="submit" class="btn-primary">Check Interactions</button>
+          <button id="resetBtn" type="button" class="btn-ghost">Reset</button>
+
+          <div class="helper">
+            <span class="dot" aria-hidden="true"></span>
+            <span id="hint">Enter at least two medications to run the check.</span>
+          </div>
+        </div>
+      </form>
+
+      <p class="disclaimer">
+        Disclaimer: This is an academic prototype and does not replace professional medical advice.
+      </p>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="card results-card">
+      <div class="card-head">
+        <h2>Results</h2>
+        <p id="summaryText">No results yet. Run a check to see interactions.</p>
+      </div>
+
+      <div id="results" class="results">
+        <div class="empty">No results to display.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Drug Interaction Check & Alert System — Prototype UI</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
