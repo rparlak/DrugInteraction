@@ -1,6 +1,4 @@
-// ------------------------
-// Brand -> Generic aliases
-// ------------------------
+
 const ALIASES = {
   flagyl: "metronidazole",
   dolorex: "diclofenac",
@@ -10,9 +8,6 @@ const ALIASES = {
   majezik: "flurbiprofen",
 };
 
-// ------------------------
-// Medication list for autocomplete
-// ------------------------
 const MEDICATION_LIST = [
   "Warfarin","Heparin","Enoxaparin","Clopidogrel","Aspirin","Rivaroxaban","Apixaban","Dabigatran",
   "Paracetamol","Ibuprofen","Diclofenac","Naproxen","Ketoprofen","Flurbiprofen","Majezik",
@@ -33,9 +28,7 @@ const MEDICATION_LIST = [
   "Valproic Acid","Allopurinol","Colchicine","Methotrexate",
 ];
 
-// ------------------------
-// Helpers
-// ------------------------
+
 const norm = (s) =>
   (s || "").trim().toLowerCase().replace(/\s+/g, " ");
 
@@ -44,8 +37,6 @@ const toGeneric = (name) => {
   return ALIASES[n] || n;
 };
 
-// Kullanıcı ne yazdıysa onu gösterelim (Flagyl yazdıysa Flagyl görünsün)
-// ama parantez içinde active ingredient de gösterelim:
 function displayNameForGeneric(genericName, enteredDrugs) {
   const g = norm(genericName);
   const match = enteredDrugs.find((d) => toGeneric(d) === g);
@@ -53,9 +44,7 @@ function displayNameForGeneric(genericName, enteredDrugs) {
   return genericName;
 }
 
-// ------------------------
-// UI elements
-// ------------------------
+
 const form = document.getElementById("drugForm");
 const resetBtn = document.getElementById("resetBtn");
 const resultsEl = document.getElementById("results");
@@ -65,7 +54,7 @@ const badges = Array.from(document.querySelectorAll(".pill-badges .badge"));
 const inputs = Array.from(document.querySelectorAll(".drug-input"));
 
 let lastResults = [];
-let activeFilter = "ALL"; // ALL | Minor | Moderate | Major
+let activeFilter = "ALL"; 
 
 function setHint(text) {
   if (hint) hint.textContent = text;
@@ -80,7 +69,7 @@ function setActiveBadge() {
 function getDrugList() {
   const raw = inputs.map((i) => i.value.trim()).filter(Boolean);
 
-  // same generic tekrar girilmesin
+ 
   const seen = new Set();
   const unique = [];
   for (const drug of raw) {
@@ -93,10 +82,7 @@ function getDrugList() {
   return unique;
 }
 
-// ------------------------
-// ✅ SQL Server API call
-// (Siteyi http://localhost:3001 üzerinden açınca relative yol çalışır)
-// ------------------------
+
 async function fetchInteractionsFromServer(drugs) {
   const res = await fetch("/check-interactions", {
     method: "POST",
@@ -115,7 +101,7 @@ async function fetchInteractionsFromServer(drugs) {
     }
   }
 
-  return JSON.parse(text); // recordset array
+  return JSON.parse(text); 
 }
 
 function sevClass(sev) {
@@ -190,7 +176,7 @@ async function runCheck() {
   try {
     const rows = await fetchInteractionsFromServer(drugs);
 
-    // rows: [{IngredientA, IngredientB, Severity, Description}]
+
     lastResults = rows.map((r) => {
       const a = r.IngredientA ?? "";
       const b = r.IngredientB ?? "";
@@ -213,9 +199,7 @@ async function runCheck() {
   }
 }
 
-// ------------------------
-// Events
-// ------------------------
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   runCheck();
@@ -239,9 +223,7 @@ badges.forEach((badge) => {
   });
 });
 
-// ------------------------
-// Autocomplete
-// ------------------------
+
 inputs.forEach((input) => {
   const box = document.createElement("div");
   box.className = "autocomplete-box";
@@ -273,6 +255,7 @@ inputs.forEach((input) => {
   });
 });
 
-// Init
+
 setActiveBadge();
 setHint("Enter at least two medications to run the check.");
+
