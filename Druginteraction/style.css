@@ -1,11 +1,9 @@
-/* =====================
-   GLOBAL & THEME
-===================== */
+
 
 :root{
-  /* Daha turuncu / sıcak pastel tema */
-  --bg1:#fff3e6;   /* soft peach */
-  --bg2:#ffd9b3;   /* pastel orange */
+  
+  --bg1:#fff3e6; 
+  --bg2:#ffd9b3;   
 
   --card: rgba(255,255,255,0.86);
   --stroke: rgba(15,23,42,0.12);
@@ -13,7 +11,7 @@
   --text: #0f172a;
   --muted: #64748b;
 
-  /* Severity colors */
+
   --minor:#22c55e;
   --moderate:#fbbf24;
   --major:#fb7185;
@@ -34,14 +32,11 @@ body{
   line-height: 1.45;
 }
 
-/* =====================
-   BACKGROUND LAYER
-===================== */
 
 .bg{
   position:fixed;
   inset:0;
-  pointer-events:none; /* Tıklamayı ASLA engellemesin */
+  pointer-events:none; 
   z-index:0;
   background:
     radial-gradient(900px 520px at 18% 12%, rgba(59,130,246,0.10), transparent 62%),
@@ -56,7 +51,7 @@ body{
     );
 }
 
-/* watermark / büyük yazı katmanı */
+
 .bg::after{
   content: "💊  DRUG CHECK  💊  DRUG CHECK  💊  DRUG CHECK";
   position:absolute;
@@ -70,12 +65,9 @@ body{
   transform: rotate(-12deg);
   filter: blur(0.4px);
   font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
-  pointer-events:none; /* yine tıklama engeli yok */
+  pointer-events:none; 
 }
 
-/* =====================
-   LAYOUT
-===================== */
 
 .topbar,
 .container,
@@ -96,7 +88,7 @@ body{
 
 .brand h1{
   margin:0;
-  font-size:34px; /* biraz büyüdü */
+  font-size:34px; 
   letter-spacing:-0.2px;
 }
 
@@ -120,9 +112,6 @@ body{
   .container{ grid-template-columns:1fr; }
 }
 
-/* =====================
-   BADGES (filter)
-===================== */
 
 .pill-badges{
   display:flex;
@@ -147,9 +136,6 @@ body{
   background: rgba(255,255,255,0.92);
 }
 
-/* =====================
-   CARDS
-===================== */
 
 .card{
   background: var(--card);
@@ -172,7 +158,7 @@ body{
 }
 
 .card > *{
-  position:relative; /* içeriği üstte tut */
+  position:relative; 
   z-index:1;
 }
 
@@ -187,9 +173,6 @@ body{
   font-size:14px;
 }
 
-/* =====================
-   FORM GRID (2-2-1)
-===================== */
 
 .grid{
   display:grid;
@@ -206,12 +189,9 @@ body{
   .full{ grid-column:auto; }
 }
 
-/* =====================
-   INPUTS
-===================== */
 
 .field{
-  position:relative; /* autocomplete kutusu için */
+  position:relative; 
 }
 
 .field label{
@@ -239,16 +219,11 @@ body{
 
 .field input:focus{
   outline:none;
-  border-color: rgba(249,115,22,0.55);              /* turuncu focus */
+  border-color: rgba(249,115,22,0.55);              
   box-shadow: 0 0 0 5px rgba(249,115,22,0.16);
 }
 
-/* =====================
-   AUTOCOMPLETE / SUGGESTIONS
-   (JS hangi class'i basıyorsa yakalamak için birkaç olasılığı stilliyoruz)
-===================== */
 
-/* Eğer JS "suggestions" / "autocomplete-list" / "drug-suggestions" gibi bir div basıyorsa */
 .suggestions,
 .autocomplete-list,
 .drug-suggestions{
@@ -266,7 +241,7 @@ body{
   overflow-y:auto;
 }
 
-/* İçindeki item’lar */
+
 .suggestions > div,
 .autocomplete-list > div,
 .drug-suggestions > div,
@@ -286,7 +261,7 @@ body{
   border-bottom:none;
 }
 
-/* Hover / seçili hissi */
+
 .suggestions > div:hover,
 .autocomplete-list > div:hover,
 .drug-suggestions > div:hover,
@@ -295,15 +270,12 @@ body{
   background: rgba(249,115,22,0.10);
 }
 
-/* Eğer JS seçilen elemana "active" veriyorsa */
+
 .suggestion-item.active,
 .autocomplete-item.active{
   background: rgba(249,115,22,0.14);
 }
 
-/* =====================
-   BUTTONS
-===================== */
 
 .actions{
   display:flex;
@@ -321,7 +293,7 @@ body{
   color:#fff;
   font-weight:800;
   font-size:15px;
-  background: linear-gradient(135deg, #f97316, #22c55e); /* daha turuncu */
+  background: linear-gradient(135deg, #f97316, #22c55e); 
   box-shadow: 0 14px 28px rgba(2,8,23,0.10);
 }
 
@@ -350,9 +322,6 @@ body{
   background: rgba(249,115,22,0.75);
 }
 
-/* =====================
-   RESULTS
-===================== */
 
 .results{
   display:flex;
@@ -389,9 +358,7 @@ body{
 .sev.moderate{ background: linear-gradient(135deg, #fbbf24, #f59e0b); }
 .sev.major{ background: linear-gradient(135deg, #fb7185, #ef4444); }
 
-/* =====================
-   DISCLAIMER & FOOTER
-===================== */
+
 
 .disclaimer{
   margin-top: 14px;
@@ -406,3 +373,4 @@ body{
   font-size:13px;
   color: rgba(100,116,139,0.85);
 }
+
