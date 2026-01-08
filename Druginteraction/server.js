@@ -7,13 +7,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Frontend dosyaları (index.html, style.css, script.js)
+
 app.use(express.static(__dirname));
 
 const dbConfig = {
   user: "dicas_api",
   password: "Dicas_2025!Strong",
-  server: "localhost\\SQLEXPRESS",   // ✅ instance böyle verilir
+  server: "localhost\\SQLEXPRESS",   
   database: "DrugInteractionDB",
   options: {
     encrypt: false,
@@ -21,12 +21,11 @@ const dbConfig = {
   }
 };
 
-// Test
 app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
 
-// Interaction endpoint
+
 app.post("/check-interactions", async (req, res) => {
   try {
     const { drugs } = req.body;
@@ -47,7 +46,7 @@ app.post("/check-interactions", async (req, res) => {
       .input("DrugList", sql.NVarChar(sql.MAX), cleaned.join(","))
       .execute("usp_CheckInteractions");
 
-    // ✅ Alan adlarını garanti etmek istersen (front-end rahat okur)
+
     const rows = (result.recordset || []).map(r => ({
       IngredientA: r.IngredientA,
       IngredientB: r.IngredientB,
@@ -62,13 +61,14 @@ app.post("/check-interactions", async (req, res) => {
   }
 });
 
-// Ana sayfa
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Start
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
 });
+
